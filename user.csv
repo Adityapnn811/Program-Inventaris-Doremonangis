@@ -1,0 +1,7 @@
+id;username;nama;alamat;password;role
+ADM;admin;admin;???;admin;admin
+U1;yudhit12;yudhit;Bogor;Budi;user
+U2;yudhit12;yudhit;budi;budi;user
+U3;yudhit13;yudhit;Bogor;Bogor;user
+U4;morgen;Jorgen;Kota Bogor;yudhit123;user
+U5;tuanmor;Morgen;Bandung;imba;user
