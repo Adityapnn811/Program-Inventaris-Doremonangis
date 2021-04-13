@@ -18,7 +18,7 @@ def convert_array_of_data_to_wanted_values(array_of_data):  # Kalo kolomnya namb
             arr_copy[i] = float(arr_copy[i])
     return arr_copy
 
-def buat_data(datas, lines):  # Ntar datas tergantung csvnya
+def buat_data(datas, lines):  # Ntar datas dan lines tergantung csvnya
     for line in lines:
         data_array = konversi_baris_ke_data(line)
         datas.append(data_array)
@@ -37,7 +37,7 @@ def load():
         raw_lines_user = f.readlines()
         f.close()
         lines_user = [raw_line.replace("\n", "") for raw_line in raw_lines_user]
-        raw_header_user = lines_user.pop(0)
+        raw_header_user = lines_user.pop(0)  # Buat ngehapus header di csv, jadi engga nyusahin pas ngolah data di fugnsi laen
         header_user = konversi_baris_ke_data(raw_header_user)  #Ntar join di fungsi save
         datas_user = []
         buat_data(datas_user, lines_user)

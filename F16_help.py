@@ -1,4 +1,21 @@
-def bantuan():
+def help_admin():
     print("\n========== HELP ==========")
     print("register - untuk melakukan registrasi user baru")
-    print("login - untuk melakukan login ke dalam sistem")
+    print("carirarity - untuk mencari gadget berdasarkan rarity gadget")
+    print("caritahun - untuk mencari gadget berdasarkan tahun gadget ditemukan")
+    print("tambahitem - untuk menambah item ke dalam kantong ajaib")
+    print("hapusitem - untuk menghapus item di dalam kantong ajaib")
+    print("ubahjumlah - untuk mengubah jumlah sebuah item consumable atau gadget")
+    print("riwayatpinjam - untuk melihat riwayat peminjaman gadget")
+    print("riwayatkembali - untuk melihat riwauat pengembalian gadget yang dipinjam")
+    print("riwayatambil - untuk melihat riwayat pengambilan consumable")
+    print("==========================")
+
+def help_user():
+    print("\n========== HELP ==========")
+    print("carirarity - untuk mencari gadget berdasarkan rarity gadget")
+    print("caritahun - untuk mencari gadget berdasarkan tahun gadget ditemukan")
+    print("pinjam - untuk meminjam gadget yang ada di kantong ajaib")
+    print("kembalikan - untuk mengembalikan gadget yang dipinjam")
+    print("minta - untuk meminta consumable")
+    print("==========================")
