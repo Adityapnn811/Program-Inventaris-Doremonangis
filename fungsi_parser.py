@@ -10,5 +10,3 @@ def parser(line):
             string_group += i
     line_copy.append(str(string_group))
     return line_copy
-
-
