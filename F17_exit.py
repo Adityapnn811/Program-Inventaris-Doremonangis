@@ -1,6 +1,7 @@
 import sys
 from F14_F15_load_dan_save import save
 
+# Fungsi buat validasi mau ngesave ato engga
 def validate_save(konfirmasi_save):
     save = False
     if konfirmasi_save == 'y' or konfirmasi_save == 'n' or konfirmasi_save == 'Y' or konfirmasi_save == 'N':
