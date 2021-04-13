@@ -2,7 +2,7 @@ import argparse
 import sys
 import os.path
 from os import path
-from parse import parser
+from fungsi_parser import parser
 
 def konversi_baris_ke_data(line):
     data_array_mentah = parser(line)
@@ -119,7 +119,6 @@ def save():
     print("\nSaving...")
 
     # Untuk user
-    datas_user += [["U7", "bruddas", "Bruddaadadn", "Seradadadng", "bradadanice", "user"]]
     f = open("Kantong/" + nama_folder + "\\user.csv", "w+")
     f.write(konversi_data_ke_string(datas_user, header_user))
     f.close()

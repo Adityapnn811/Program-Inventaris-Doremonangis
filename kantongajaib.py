@@ -1,18 +1,11 @@
-from fungsi_load_dan_save import load, save
-from help import bantuan
+from F14_F15_load_dan_save import load, save
+from F16_help import bantuan
+from F17_exit import exit
 import sys
 
-def validate_save(konfirmasi_save):
-    save = False
-    if konfirmasi_save == 'y' or konfirmasi_save == 'n':
-        save = True
-    else:
-        save = False
-    return save
 
 load()
 
-#flag_exit = False
 print("\nLoading...")
 print('\n\nSelamat datang di "Kantong Ajaib"!')
 while True:
@@ -24,16 +17,4 @@ while True:
     elif perintah_pertama == "save":
         save()
     elif perintah_pertama == "keluar":
-        konfirmasi_save = input("\nApakah Anda ingin menyimpan data sebelum keluar? (y/n)? : ")
-        validate_save(konfirmasi_save)
-        while not validate_save(konfirmasi_save):
-            print("Mohon masukkan input yang valid.")
-            konfirmasi_save = input("\nApakah Anda ingin menyimpan data sebelum keluar? (y/n)? : ")
-            validate_save(konfirmasi_save)
-        if konfirmasi_save == "y":
-            save()
-            print("Terima kasih telah menggunakan kantong ajaib!")
-            sys.exit(1)
-        elif konfirmasi_save =="n":
-            print("Terima kasih telah menggunakan kantong ajaib!")
-            sys.exit(1)
+        exit()
