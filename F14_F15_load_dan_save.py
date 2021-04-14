@@ -4,6 +4,15 @@ import os.path
 from os import path
 from fungsi_parser import parser
 
+# Deklarasi variable datas
+datas_user = []
+datas_gadget = []
+datas_consumable = []
+datas_consumable_history = []
+datas_gadget_borrow_history = []
+datas_gadget_return_history = []
+
+
 def konversi_baris_ke_data(line):
     data_array_mentah = parser(line)
     data_array = [data.strip() for data in data_array_mentah]
@@ -39,7 +48,6 @@ def load():
         lines_user = [raw_line.replace("\n", "") for raw_line in raw_lines_user]
         raw_header_user = lines_user.pop(0)  # Buat ngehapus header di csv, jadi engga nyusahin pas ngolah data di fugnsi laen
         header_user = konversi_baris_ke_data(raw_header_user)  #Ntar join di fungsi save
-        datas_user = []
         buat_data(datas_user, lines_user)
 
         # Untuk gadget
@@ -49,7 +57,6 @@ def load():
         lines_gadget = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget]
         raw_header_gadget = lines_gadget.pop(0)
         header_gadget = konversi_baris_ke_data(raw_header_gadget)  # Ntar join di fungsi save
-        datas_gadget = []
         buat_data(datas_gadget, lines_gadget)
 
         # Untuk consumable
@@ -59,7 +66,6 @@ def load():
         lines_consumable = [raw_line.replace("\n", "") for raw_line in raw_lines_consumable]
         raw_header_consumable = lines_consumable.pop(0)
         header_consumable = konversi_baris_ke_data(raw_header_consumable)  # Ntar join di fungsi save
-        datas_consumable = []
         buat_data(datas_consumable, lines_consumable)
 
         # Untuk consumable_history
@@ -69,7 +75,6 @@ def load():
         lines_consumable_history = [raw_line.replace("\n", "") for raw_line in raw_lines_consumable_history]
         raw_header_consumable_history = lines_consumable_history.pop(0)
         header_consumable_history = konversi_baris_ke_data(raw_header_consumable_history)  # Ntar join di fungsi save
-        datas_consumable_history = []
         buat_data(datas_consumable_history, lines_consumable_history)
 
         # Untuk gadget_borrow_history
@@ -79,7 +84,6 @@ def load():
         lines_gadget_borrow_history = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget_borrow_history]
         raw_header_gadget_borrow_history = lines_gadget_borrow_history.pop(0)
         header_gadget_borrow_history = konversi_baris_ke_data(raw_header_gadget_borrow_history)  # Ntar join di fungsi save
-        datas_gadget_borrow_history = []
         buat_data(datas_gadget_borrow_history, lines_gadget_borrow_history)
 
         # Untuk gadget_return_history
@@ -89,7 +93,6 @@ def load():
         lines_gadget_return_history = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget_return_history]
         raw_header_gadget_return_history = lines_gadget_return_history.pop(0)
         header_gadget_return_history = konversi_baris_ke_data(raw_header_gadget_return_history)  # Ntar join di fungsi save
-        datas_gadget_return_history = []
         buat_data(datas_gadget_return_history, lines_gadget_return_history)
 
     else:
@@ -103,10 +106,10 @@ def save():
     global header_gadget_return_history, datas_gadget_return_history
 
     def konversi_data_ke_string(datas, header):
-        string_data = ",".join(header) + "\n"
+        string_data = ";".join(header) + "\n"
         for arr_data in datas:
             arr_data_all_string = [str(val) for val in arr_data]
-            string_data += ",".join(arr_data_all_string)
+            string_data += ";".join(arr_data_all_string)
             string_data += "\n"
         datas = string_data
         return datas
@@ -149,6 +152,34 @@ def save():
     f.close()
 
     print("Data telah disimpan pada folder " + nama_folder + "!")
+
+
+# FUNGSI VALIDASI LOGIN
+def validate_login(username, password, database):
+    validate = False
+    for data in database:
+        if data[1] == username and data[4] == password:
+            validate = True
+    if validate:
+        print("Halo {}! Selamat datang di kantong ajaib".format(username))
+        return True
+    else:
+        print("Username/Password salah! Silahkan coba lagi")
+        return False
+
+#FUNGSI LOGIN (YANG DIPANGGIL DI MAIN)
+def login(database):
+    username = input("Username: ")
+    password = input("Password: ")
+    while validate_login(username, password, database) == False:
+        username = input("Username: ")
+        password = input("Password: ")
+        validate_login(username, password, database)
+    # username id buat tau siapa yang login
+    for i in range(len(database)):
+        if database[i][1] == username:
+            userid = database[i][0]
+    return userid
 
 
 if __name__ == '__main__':
