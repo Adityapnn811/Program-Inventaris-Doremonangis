@@ -10,12 +10,12 @@ def validate_login(username, password, database):
 
 #FUNGSI LOGIN (YANG DIPANGGIL DI MAIN)
 def login(database):
-    username = input("\nUsername: ")
+    username = input("Username: ")
     password = input("Password: ")
     validate_login(username, password, database)
     while validate_login(username, password, database) == False:
         print("Username/Password salah! Silahkan coba lagi")
-        username = input("\nUsername: ")
+        username = input("Username: ")
         password = input("Password: ")
         validate_login(username, password, database)
     else:
