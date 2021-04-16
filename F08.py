@@ -7,8 +7,6 @@ def validate_borrow(check, id, userid, jumlah, tanggal, database_gadget, databas
         if database_history[i][1] == userid and database_history[i][2] == id and database_history[i][4] != 0:
             print("\n>>> Kamu sudah meminjam gadget ini! Harap kembalikan terlebih dahulu sebelum meminjam kembali!")
             already_borrow = True
-            break
-            #Ini masi break, mungkin nanti kalo udah dpt program utamanya bisa dikasi fungsi buat pilih layanan lain gitu
     #VALIDASI PINJEMNYA MELEBIHI STOK/NGGA sekaligus konfirmasi pinjemannya
     if not(already_borrow):
         for i in range(len(database_gadget)):
@@ -17,18 +15,20 @@ def validate_borrow(check, id, userid, jumlah, tanggal, database_gadget, databas
                 stok -= jumlah
                 if stok < 0:
                     check += 1
-                    print("Stok tidak tersedia, stok yang tersedia sekarang sebanyak {}".format(database_gadget[i][3]))
-                    return False
+                    if database_gadget[i][3] == 0:
+                        print("Stok habis, tunggu doraemon kembali dari petualangannya!")
+                    else:
+                        print("Stok tidak tersedia, stok yang tersedia sekarang sebanyak {}".format(database_gadget[i][3]))
+                        borrow_gadget(userid, database_gadget, database_history)
                 else:
                     check += 1
                     database_gadget[i][3] = stok
                     borrowed = [len(database_history),userid, database_gadget[i][0], tanggal, jumlah]
                     database_history.append(borrowed)
                     print("Item {} x{} berhasil dipinjam! Stok tersisa sekarang {}".format(database_gadget[i][1], jumlah, stok))
-                    return True
     if check == 0 and not(already_borrow):
         print("ID barang tidak ada, masukkan id yang benar!")
-        return False
+        borrow_gadget(userid, database_gadget, database_history)
 
 #YANG DIPANGGIL DI MAIN
 #parameternya
@@ -41,9 +41,4 @@ def borrow_gadget(userid, database_gadget, database_history):
     id = input("Masukkan id item: ")
     tanggal = input("Tanggal peminjaman(DD/MM/YYYY): ")
     jumlah = int(input("Jumlah peminjaman: "))
-    while validate_borrow(count, id, userid, jumlah, tanggal, database_gadget, database_history) == False:
-        id = input("Masukkan id item: ")
-        tanggal = input("Tanggal peminjaman(DD/MM/YYYY): ")
-        jumlah = int(input("Jumlah peminjaman: "))
-        validate_borrow(count, id, userid, jumlah, tanggal, database_gadget, database_history)
-            
+    validate_borrow(count, id, userid, jumlah, tanggal, database_gadget, database_history)
