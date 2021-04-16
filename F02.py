@@ -1,32 +1,22 @@
-# F02 - LOGIN
-
-# FUNGSI VALIDASI LOGIN
-
-#ini var global buat semua fungsi yang butuh id user
-user_id = ""
+id = ""
 
 def validate_login(username, password, database):
-    validate = False
+    global id
+    valid = False
     for data in database:
         if data[1] == username and data[4] == password:
-            validate = True
-    if validate:
+            id = data[0]
+            valid = True
+    if valid:
         print("Halo {}! Selamat datang di kantong ajaib".format(username))
-        return True
+        print(id)
     else:
         print("Username/Password salah! Silahkan coba lagi")
-        return False
+        login(database)
 
 #FUNGSI LOGIN (YANG DIPANGGIL DI MAIN)
 def login(database):
-    global user_id
+    global id
     username = input("Username: ")
     password = input("Password: ")
-    while validate_login(username, password, database) == False:
-        username = input("Username: ")
-        password = input("Password: ")
-        validate_login(username, password, database)
-    # username id buat tau siapa yang login
-    for i in range(len(database)):
-        if database[i][1] == username:
-            user_id = database[i][0]
+    validate_login(username, password, database)
