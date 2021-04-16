@@ -7,9 +7,12 @@ def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadge
             if i == (no_pinjam-1):
                 jumlah = int(input("Berapa banyak yang akan dikembalikan? stok sekarang {} : ".format(data_pinjam[i][3])))
                 stok_now = data_pinjam[i][3] - jumlah
-                if stok_now < 0:
+                if jumlah < 0:
+                    print("Mana mungkin kukembalikan barang negatif sobat??")
+                    return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return)
+                elif stok_now < 0:
                     print("Stok tidak mencukupi! Harap masukkan jumlah pengembalian yang valid")
-                    return False
+                    return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return)
                 else:
                     append_return = [data_pinjam[i][0], data_pinjam[i][1], data_pinjam[i][2], tanggal_balik, jumlah]
                     #id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah
@@ -25,7 +28,7 @@ def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadge
                             database_gadget_history[i][4] -= jumlah
                             print("\n>>> Riwayat peminjamanmu telah diperbaharui")
                             break
-                return True
+                
                             
 
 
@@ -64,15 +67,5 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
             print("Masukkan nomor peminjaman yang benar!")
             no_pinjam = int(input("Masukkan nomor peminjaman: "))
             tanggal_balik = input("Masukkan tanggal pengembalian: ")
-        while return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return) == False:
-            return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return)
+        return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return)
             
-
-
-
-
-            
-                
-
-            
-
