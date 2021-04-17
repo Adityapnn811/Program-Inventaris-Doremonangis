@@ -18,14 +18,19 @@ def konversi_baris_ke_data(line):
     data_array = [data.strip() for data in data_array_mentah]
     return data_array
 
-def convert_array_of_data_to_wanted_values(array_of_data):  # Kalo kolomnya nambah, tambahin constant di constant.py sama tambahin elif
-    arr_copy = array_of_data[:]
+def konversi_data_array_ke_tipe_sesuai(data_array, TOTAL_KOLOM, idxjml):  # Fungsi buat ngubah string ke integer
+    arr_copy = data_array[:]
     for i in range(TOTAL_KOLOM):
-        if (i == ID):
+        if (i == idxjml):
             arr_copy[i] = int(arr_copy[i])
-        elif (i == RATING):
-            arr_copy[i] = float(arr_copy[i])
     return arr_copy
+
+def buat_data_sesuai_tipe_data(datas, lines, TOTAL_KOLOM, idxjml):
+    for line in lines:
+        data_array = konversi_baris_ke_data(line)
+        data_array_sesuai_tipe_data = konversi_data_array_ke_tipe_sesuai(data_array, TOTAL_KOLOM, idxjml)
+        datas.append(data_array_sesuai_tipe_data)
+    return datas
 
 def buat_data(datas, lines):  # Ntar datas dan lines tergantung csvnya
     for line in lines:
@@ -57,7 +62,7 @@ def load():
         lines_gadget = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget]
         raw_header_gadget = lines_gadget.pop(0)
         header_gadget = konversi_baris_ke_data(raw_header_gadget)  # Ntar join di fungsi save
-        buat_data(datas_gadget, lines_gadget)
+        buat_data_sesuai_tipe_data(datas_gadget, lines_gadget, 6, 3)
 
         # Untuk consumable
         f = open("Kantong/" + args.nama_folder + "\\consumable.csv", "r")
@@ -66,7 +71,7 @@ def load():
         lines_consumable = [raw_line.replace("\n", "") for raw_line in raw_lines_consumable]
         raw_header_consumable = lines_consumable.pop(0)
         header_consumable = konversi_baris_ke_data(raw_header_consumable)  # Ntar join di fungsi save
-        buat_data(datas_consumable, lines_consumable)
+        buat_data_sesuai_tipe_data(datas_consumable, lines_consumable, 5, 3)
 
         # Untuk consumable_history
         f = open("Kantong/" + args.nama_folder + "\\consumable_history.csv", "r")
@@ -84,7 +89,7 @@ def load():
         lines_gadget_borrow_history = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget_borrow_history]
         raw_header_gadget_borrow_history = lines_gadget_borrow_history.pop(0)
         header_gadget_borrow_history = konversi_baris_ke_data(raw_header_gadget_borrow_history)  # Ntar join di fungsi save
-        buat_data(datas_gadget_borrow_history, lines_gadget_borrow_history)
+        buat_data_sesuai_tipe_data(datas_gadget_borrow_history, lines_gadget_borrow_history, 5, 4)
 
         # Untuk gadget_return_history
         f = open("Kantong/" + args.nama_folder + "\\gadget_return_history.csv", "r")
@@ -93,7 +98,7 @@ def load():
         lines_gadget_return_history = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget_return_history]
         raw_header_gadget_return_history = lines_gadget_return_history.pop(0)
         header_gadget_return_history = konversi_baris_ke_data(raw_header_gadget_return_history)  # Ntar join di fungsi save
-        buat_data(datas_gadget_return_history, lines_gadget_return_history)
+        buat_data_sesuai_tipe_data(datas_gadget_return_history, lines_gadget_return_history, 5, 4)
 
     else:
         print("\nTidak ada nama folder yang diberikan!")
