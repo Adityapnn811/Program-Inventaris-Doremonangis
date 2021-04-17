@@ -15,14 +15,7 @@ print("\nSebelum masuk ke kantong ajaib, login dulu ya!")
 
 id_user = login(datas_user) # Manggil fungsi login sekalian assign id user
 
-<<<<<<< HEAD
-login(datas_user)
-print(id)
-
-if id == "ADM":  # Udah manggil fungsi login, jadi ngga usah dipanggil dulu sebelumnya
-=======
 if id_user == "ADM":
->>>>>>> branch-Adit
     while True:
         print("\nApa yang ingin kamu lakukan di kantong ajaib?\n1. register"
               "\n2. carirarity\n3. caritahun\n4. tambahitem\n5. hapusitem\n6. ubahjumlah\n7. riwayatpinjam"
