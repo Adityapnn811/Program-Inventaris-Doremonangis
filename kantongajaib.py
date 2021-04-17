@@ -1,7 +1,7 @@
 from F14_F15_load_dan_save import *
 from F16_help import help_user, help_admin
 from F17_exit import exit
-from F02 import login
+from F02 import *
 from F01 import input_username
 import sys
 
@@ -12,7 +12,10 @@ print("\nLoading...")
 print('\nSelamat datang di "Kantong Ajaib"!')
 print("Sebelum masuk ke kantong ajaib, login dulu ya!")
 
-if (login(datas_user)) == "ADM":  # Udah manggil fungsi login, jadi ngga usah dipanggil dulu sebelumnya
+login(datas_user)
+print(id)
+
+if id == "ADM":  # Udah manggil fungsi login, jadi ngga usah dipanggil dulu sebelumnya
     while True:
         print("\nApa yang ingin kamu lakukan di kantong ajaib?\n1. register"
               "\n2. help\n3. exit\n4. save")
