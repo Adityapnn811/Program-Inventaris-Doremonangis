@@ -5,7 +5,7 @@ from F02 import *
 from F01 import input_username
 from F08 import *
 from F09 import *
-import sys
+from F10_meminta_consumable import *
 
 load()
 
@@ -42,6 +42,8 @@ else:
             borrow_gadget(id_user, datas_gadget, datas_gadget_borrow_history)
         elif perintah_pertama == "kembalikan":
             return_borrowed(id_user, datas_gadget, datas_gadget_borrow_history, datas_gadget_return_history)
+        elif perintah_pertama == "minta":
+            minta_consumable(datas_consumable, id_user, datas_consumable_history)
         elif perintah_pertama == "save":
             save()
         elif perintah_pertama == "exit" or perintah_pertama == "Exit" or perintah_pertama == "EXIT":

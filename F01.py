@@ -23,4 +23,4 @@ def input_username(database):
     alamat = input("Alamat: ")
     datas_user = [id,username,nama,alamat,password,"user"]
     database.append(datas_user)
-    print("User {} telah berhasil register ke dalam kantong ajaib!".format(username))
+    print("\nUser {} telah berhasil register ke dalam kantong ajaib!".format(username))
