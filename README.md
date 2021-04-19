@@ -1,10 +1,5 @@
 # Program-Inventaris-Doremonangis
 Tugas besar mata kuliah Dasar Pemrograman.
-1. Fungsi help ku keknya mending dibagi pas jadi user sama admin
-2. Main.py nya itu namanya kantongajaib.py. Isinya amsih kasar dan mentah buat sekarang
-3. Buat fungsi lain yang perlu modif data int, keknya perlu didiskusiin
-4. Validasi input exit belom ada
-5. Enaknya di awal harus login ato engga?
 
 Tutorial ngejalanin program:
 1. Buka cmd, ganti directory ke file ini. "cd <directory>"
