@@ -16,44 +16,54 @@ def convert_consum_id_name(id, database_consum):
         if id == database_consum[i][0]:
             return database_consum[i][1]
 
+#ini fungsi buat ambil id user sama id gadget dari no_kembali
+def convert_nokembali_iduser(no_kembali, gadget_borrow_history):
+    for i in range(len(gadget_borrow_history)):
+        if no_kembali == gadget_borrow_history[i][0]:
+            return gadget_borrow_history[i][1]
 
 
-#F11
-#akses borrow_history, user, gadget
-def show_history(date_sorted_olah, database_user, database_gadget):
+def convert_nokembali_idgadget(no_kembali, gadget_borrow_history):
+    for i in range(len(gadget_borrow_history)):
+        if no_kembali == gadget_borrow_history[i][0]:
+            return gadget_borrow_history[i][2]
+
+
+
+
+
+#biar ga panjang euy
+#gadget bisa diganti consumable, nyesuain aje
+def show_log_gadget(i, date_sorted_olah, database_user, database_need, type, kode, kode2):
+    print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
+    print("Nama {}: {}".format(kode2, convert_user_id_name(date_sorted_olah[i][1], database_user)))
+    print("Nama {}: {}".format(type, convert_gadget_id_name(date_sorted_olah[i][2], database_need)))
+    print("Tanggal {}: {}".format(kode, date_sorted_olah[i][3]))
+    print("Jumlah: {}".format(date_sorted_olah[i][4]))
+ 
+#ini loop dari show_log
+def show_history(date_sorted_olah, database_user, database_gadget, type, kode, kode2):
     prekon = len(date_sorted_olah)
     if prekon != 0:
         hitung = 0
         for i in range(len(date_sorted_olah)):
             #1,2,3,4
             if hitung == 0:
-                print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
-                print("Nama pengambil: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                print("Nama gadget: {}".format(convert_gadget_id_name(date_sorted_olah[i][2], database_gadget)))
-                print("Tanggal peminjaman: {}".format(date_sorted_olah[i][3]))
-                print("Jumlah: {}".format(date_sorted_olah[i][4]))
+                show_log_gadget(i, date_sorted_olah, database_user, database_gadget, type, kode, kode2)
                 hitung += 1
             elif hitung % 5 != 0:
-                print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
-                print("Nama pengambil: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                print("Nama gadget: {}".format(convert_gadget_id_name(date_sorted_olah[i][2], database_gadget)))
-                print("Tanggal peminjaman: {}".format(date_sorted_olah[i][3]))
-                print("Jumlah: {}".format(date_sorted_olah[i][4]))
+                show_log_gadget(i, date_sorted_olah, database_user, database_gadget, type, kode, kode2)
                 hitung += 1
             else:
                 print("\n>>>Next?(y/n)")
                 choice = str(input()).lower()
                 if choice == "y":
-                    print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
-                    print("Nama pengambil: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                    print("Nama gadget: {}".format(convert_gadget_id_name(date_sorted_olah[i][2], database_gadget)))
-                    print("Tanggal peminjaman: {}".format(date_sorted_olah[i][3]))
-                    print("Jumlah: {}".format(date_sorted_olah[i][4]))
+                    show_log_gadget(i, date_sorted_olah, database_user, database_gadget, type, kode, kode2)
                     hitung += 1
                 else:
                     break
     else:
-        print("Belum ada riwayat peminjaman!")
+        print("Belum ada riwayat {}!")
     
 
 def gadget_borrow_history_info(database_history, database_user, database_gadget):
@@ -75,55 +85,26 @@ def gadget_borrow_history_info(database_history, database_user, database_gadget)
             if date_history[tentu] == list_show[i][3]:
                 date_sorted_done.append(list_show[i])
         tentu -= 1
-    show_history(date_sorted_done, database_user, database_gadget)
+    show_history(date_sorted_done, database_user, database_gadget, "gadget", "peminjaman", "peminjam")
+
 
 
 #F12
-def show_history(date_sorted_olah, database_user, database_gadget):
-    prekon = len(date_sorted_olah)
-    if prekon != 0:
-        hitung = 0
-        for i in range(len(date_sorted_olah)):
-            #1,2,3,4
-            if hitung == 0:
-                print("\nID pengembalian: {}".format(date_sorted_olah[i][0]))
-                print("Nama pengembali: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                print("Nama gadget: {}".format(convert_gadget_id_name(date_sorted_olah[i][2], database_gadget)))
-                print("Tanggal pengembalian: {}".format(date_sorted_olah[i][3]))
-                print("Jumlah: {}".format(date_sorted_olah[i][4]))
-                hitung += 1
-            elif hitung % 5 != 0:
-                print("\nID pengembalian: {}".format(date_sorted_olah[i][0]))
-                print("Nama pengembali: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                print("Nama gadget: {}".format(convert_gadget_id_name(date_sorted_olah[i][2], database_gadget)))
-                print("Tanggal pengembalian: {}".format(date_sorted_olah[i][3]))
-                print("Jumlah: {}".format(date_sorted_olah[i][4]))
-                hitung += 1
-            else:
-                print("\n>>>Next?(y/n)")
-                choice = str(input()).lower()
-                if choice == "y":
-                    print("\nID pengembalian: {}".format(date_sorted_olah[i][0]))
-                    print("Nama pengembali: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                    print("Nama gadget: {}".format(convert_gadget_id_name(date_sorted_olah[i][2], database_gadget)))
-                    print("Tanggal pengembalian: {}".format(date_sorted_olah[i][3]))
-                    print("Jumlah: {}".format(date_sorted_olah[i][4]))
-                    hitung += 1
-                else:
-                    break
-    else:
-        print("Belum ada riwayat pengembalian!")
-    
-
-def gadget_borrow_history_info(database_return, database_user, database_gadget):
+def gadget_return_history_info(database_return, database_user, database_gadget, database_gadget_borrow):
     list_show = []
     date_history = []
     date_sorted_done = []
     for i in range(len(database_return)):
         #if database_history[i][4] != 0: #khusus f12 gausah validasi ini
-        data_show = [database_return[i][0], database_return[i][1], database_return[i][2], database_return[i][3], database_return[i][4]]
+        #id;id_peminjaman;tanggal_pengembalian;jumlah;is_returned
+        #dikonvert dari atas ke bawah pake fungsi yang ada
+        #id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah
+        #ini ngeconvert dari nomor peminjaman ke id gaget sama id user aja
+        id_peminjam = convert_nokembali_iduser(database_return[i][1], database_gadget_borrow)
+        id_gadget = convert_nokembali_idgadget(database_return[i][1], database_gadget_borrow)
+        data_show = [database_return[i][0], id_peminjam, id_gadget, database_return[i][2], database_return[i][3]]
         #ubah ke string dlu biar bisa dipakein fungsi
-        date_history.append(str(database_return[i][3]))
+        date_history.append(str(database_return[i][2]))
         list_show.append(data_show)
     #sort tanggalnya
     date_history.sort(key = lambda date: datetime.strptime(date, '%d/%m/%Y')) 
@@ -134,51 +115,11 @@ def gadget_borrow_history_info(database_return, database_user, database_gadget):
             if date_history[tentu] == list_show[i][3]:
                 date_sorted_done.append(list_show[i])
         tentu -= 1
-    show_history(date_sorted_done, database_user, database_gadget)
-
-
-
-
+    show_history(date_sorted_done, database_user, database_gadget, "gadget", "pengembalian", "pengembali")
 
 
 #F13
-def show_history(date_sorted_olah, database_user, database_consum):
-    prekon = len(date_sorted_olah)
-    if prekon != 0:
-        hitung = 0
-        for i in range(len(date_sorted_olah)):
-            #1,2,3,4
-            if hitung == 0:
-                print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
-                print("Nama pengambil: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                print("Nama consumable: {}".format(convert_consum_id_name(date_sorted_olah[i][2], database_consum)))
-                print("Tanggal peminjaman: {}".format(date_sorted_olah[i][3]))
-                print("Jumlah: {}".format(date_sorted_olah[i][4]))
-                hitung += 1
-            elif hitung % 5 != 0:
-                print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
-                print("Nama pengambil: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                print("Nama consumable: {}".format(convert_consum_id_name(date_sorted_olah[i][2], database_consum)))
-                print("Tanggal peminjaman: {}".format(date_sorted_olah[i][3]))
-                print("Jumlah: {}".format(date_sorted_olah[i][4]))
-                hitung += 1
-            else:
-                print("\n>>>Next?(y/n)")
-                choice = str(input()).lower()
-                if choice == "y":
-                    print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
-                    print("Nama pengambil: {}".format(convert_user_id_name(date_sorted_olah[i][1], database_user)))
-                    print("Nama consumable: {}".format(convert_consum_id_name(date_sorted_olah[i][2], database_consum)))
-                    print("Tanggal peminjaman: {}".format(date_sorted_olah[i][3]))
-                    print("Jumlah: {}".format(date_sorted_olah[i][4]))
-                    hitung += 1
-                else:
-                    break
-    else:
-        print("Belum ada riwayat peminjaman!")
-    
-
-def gadget_borrow_history_info(database_consum_history, database_user, database_consumable):
+def consum_request_history_info(database_consum_history, database_user, database_consumable):
     list_show = []
     date_history = []
     date_sorted_done = []
@@ -197,5 +138,4 @@ def gadget_borrow_history_info(database_consum_history, database_user, database_
             if date_history[tentu] == list_show[i][3]:
                 date_sorted_done.append(list_show[i])
         tentu -= 1
-    show_history(date_sorted_done, database_user, database_consumable)
-
+    show_history(date_sorted_done, database_user, database_consumable, "consumable", "pengambilan", "peminta")
