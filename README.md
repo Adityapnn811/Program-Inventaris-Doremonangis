@@ -8,3 +8,5 @@ Tugas besar mata kuliah Dasar Pemrograman.
 #F-08 = Peminjaman gadget
 
 #F-09 = Pengembalian peminjaman gadget {uda termasuk bonus}
+
+#F11_12_13 = Riwayat
