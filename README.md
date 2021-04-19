@@ -1,4 +1,4 @@
-# Branch Login, Register, Peminjaman Gadget, Pengembalian Gadget
+# Branch Login, Register, Peminjaman Gadget, Pengembalian Gadget V1.2(spek baru)
 Tugas besar mata kuliah Dasar Pemrograman.
 
 #F-01 = Register
