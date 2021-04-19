@@ -76,7 +76,7 @@ def gadget_borrow_history_info(database_history, database_user, database_gadget)
             #ubah ke string dlu biar bisa dipakein fungsi
             date_history.append(str(database_history[i][3]))
             list_show.append(data_show)
-    #sort tanggalnya
+    #sort tanggalny
     date_history.sort(key = lambda date: datetime.strptime(date, '%d/%m/%Y')) 
     #loop buat bikin list yang udah sorted berdasarkan tanggal
     tentu = len(date_history) - 1
