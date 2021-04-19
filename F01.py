@@ -18,7 +18,6 @@ def input_username(database):
     username = input("Username: ")
     while validate_username(username, database) == False:
         username = input("Username: ")
-        validate_username(username, database)
     password = input("Password: ")
     alamat = input("Alamat: ")
     datas_user = [id,username,nama,alamat,password,"user"]
