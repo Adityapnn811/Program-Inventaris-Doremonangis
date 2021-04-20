@@ -10,3 +10,5 @@ Tugas besar mata kuliah Dasar Pemrograman.
 #F-09 = Pengembalian peminjaman gadget {uda termasuk bonus}
 
 #F11_12_13 = Riwayat
+
+#FB01 Hash.py = Ini fungsi hash
