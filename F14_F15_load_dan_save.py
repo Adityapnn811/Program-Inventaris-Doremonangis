@@ -21,7 +21,7 @@ def konversi_baris_ke_data(line):
 def konversi_data_array_ke_tipe_sesuai(data_array, TOTAL_KOLOM, idxjml):  # Fungsi buat ngubah string ke integer
     arr_copy = data_array[:]
     for i in range(TOTAL_KOLOM):
-        if (i == idxjml):
+        if i == idxjml:
             arr_copy[i] = int(arr_copy[i])
     return arr_copy
 
@@ -98,7 +98,7 @@ def load():
         lines_gadget_return_history = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget_return_history]
         raw_header_gadget_return_history = lines_gadget_return_history.pop(0)
         header_gadget_return_history = konversi_baris_ke_data(raw_header_gadget_return_history)  # Ntar join di fungsi save
-        buat_data_sesuai_tipe_data(datas_gadget_return_history, lines_gadget_return_history, 5, 3)
+        buat_data_sesuai_tipe_data(datas_gadget_return_history, lines_gadget_return_history, 4, 3)
 
     else:
         print("\nTidak ada nama folder yang diberikan!")

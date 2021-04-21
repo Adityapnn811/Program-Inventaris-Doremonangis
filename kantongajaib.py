@@ -9,6 +9,7 @@ from F10_meminta_consumable import *
 from F11_F12_F13 import *
 
 load()
+print(datas_gadget_return_history)
 
 print("\nLoading...")
 print('\n==========Selamat datang di "Kantong Ajaib"!==========')
