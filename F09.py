@@ -27,7 +27,7 @@ def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadge
                 for i in range(len(database_gadget)):
                     if gadget_id[no_pinjam - 1][0] == database_gadget[i][0]:
                         database_gadget[i][3] += jumlah
-                        print("Item {} (x{}) berhasil dikembalikan".format(database_gadget[i][1], jumlah))
+                        print("\nItem {} (x{}) berhasil dikembalikan".format(database_gadget[i][1], jumlah))
                         item_hapus = gadget_id[no_pinjam - 1][0]
                         break
                 for i in range(len(database_gadget_history)):
@@ -47,6 +47,7 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
     num = 0
     data_pinjam = []
     gadget_id = []
+    print("")
     # LOOP BUAT NUNJUKKIN GADGET YANG UDAH DIPINJEM
     for i in range(len(database_gadget_history)):
         if database_gadget_history[i][1] == userid:
@@ -61,14 +62,14 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
                         # id;id_peminjaman;tanggal_pengembalian;is_returned
                         # simpen history peminjamannya, uda termasuk id sama jumlahnya
                         data_pinjam.append(
-                            [len(database_gadget_return), database_gadget_history[i][0], database_gadget_history[i][4]])
+                            [(len(database_gadget_return) + 1), database_gadget_history[i][0], database_gadget_history[i][4]])
                         # isi data_pinjam = [id, nomor peminjaman, jumlah yang dipinjem]
                         gadget_id.append([database_gadget[j][0], database_gadget_history[i][4]])
                         # isi gadget_id = [gadget_id, jumlah yang dipinjam]
     if num == 0:
         print("Kamu belum meminjam barang apapun!")
     else:
-        no_pinjam = int(input("Masukkan nomor peminjaman: "))
+        no_pinjam = int(input("\nMasukkan nomor peminjaman: "))
         tanggal_balik = input("Masukkan tanggal pengembalian: ")
         # Validasi kalo nomor peminjamannya ga valid
         while (no_pinjam) > len(data_pinjam):

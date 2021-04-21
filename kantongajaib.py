@@ -6,6 +6,7 @@ from F01 import input_username
 from F08 import *
 from F09 import *
 from F10_meminta_consumable import *
+from F11_F12_F13 import *
 
 load()
 
@@ -25,6 +26,12 @@ if id_user == "ADM":
             help_admin()
         elif perintah_pertama == "register":
             input_username(datas_user)
+        elif perintah_pertama == "riwayatpinjam":
+            gadget_borrow_history_info(datas_gadget_borrow_history, datas_user, datas_gadget)
+        elif perintah_pertama == "riwayatkembali":
+            gadget_return_history_info(datas_gadget_return_history, datas_user, datas_gadget, datas_gadget_borrow_history)
+        elif perintah_pertama == "riwayatambil":
+            consum_request_history_info(datas_consumable_history, datas_user, datas_consumable)
         elif perintah_pertama == "save":
             save()
         elif perintah_pertama == "exit" or perintah_pertama == "Exit" or perintah_pertama == "EXIT":
