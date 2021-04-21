@@ -1,6 +1,3 @@
-#NGEMBALIIN GADGET
-#uda termasuk bonus
-
 def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return):
     isreturn = False
     for i in range(len(data_pinjam)):
@@ -74,4 +71,3 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
             no_pinjam = int(input("Masukkan nomor peminjaman: "))
             tanggal_balik = input("Masukkan tanggal pengembalian: ")
         return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history, database_gadget_return)
-            
