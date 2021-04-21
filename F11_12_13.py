@@ -34,31 +34,31 @@ def convert_nokembali_idgadget(no_kembali, gadget_borrow_history):
 
 #biar ga panjang euy
 #gadget bisa diganti consumable, nyesuain aje
-def show_log_gadget(i, date_sorted_olah, database_user, database_need, type, kode, kode2):
-    print("\nID peminjaman: {}".format(date_sorted_olah[i][0]))
+def show_log_gadget(i, date_sorted_olah, database_user, database_need, deskripsi, type, kode, kode2):
+    print("\nID {}: {}".format(deskripsi, date_sorted_olah[i][0]))
     print("Nama {}: {}".format(kode2, convert_user_id_name(date_sorted_olah[i][1], database_user)))
     print("Nama {}: {}".format(type, convert_gadget_id_name(date_sorted_olah[i][2], database_need)))
     print("Tanggal {}: {}".format(kode, date_sorted_olah[i][3]))
     print("Jumlah: {}".format(date_sorted_olah[i][4]))
  
 #ini loop dari show_log
-def show_history(date_sorted_olah, database_user, database_gadget, type, kode, kode2):
+def show_history(date_sorted_olah, database_user, database_gadget, deskripsi, type, kode, kode2):
     prekon = len(date_sorted_olah)
     if prekon != 0:
         hitung = 0
         for i in range(len(date_sorted_olah)):
             #1,2,3,4
             if hitung == 0:
-                show_log_gadget(i, date_sorted_olah, database_user, database_gadget, type, kode, kode2)
+                show_log_gadget(i, date_sorted_olah, database_user, database_gadget, deskripsi, type, kode, kode2)
                 hitung += 1
             elif hitung % 5 != 0:
-                show_log_gadget(i, date_sorted_olah, database_user, database_gadget, type, kode, kode2)
+                show_log_gadget(i, date_sorted_olah, database_user, database_gadget, deskripsi, type, kode, kode2)
                 hitung += 1
             else:
                 print("\n>>>Next?(y/n)")
                 choice = str(input()).lower()
                 if choice == "y":
-                    show_log_gadget(i, date_sorted_olah, database_user, database_gadget, type, kode, kode2)
+                    show_log_gadget(i, date_sorted_olah, database_user, database_gadget, deskripsi, type, kode, kode2)
                     hitung += 1
                 else:
                     break
@@ -76,7 +76,7 @@ def gadget_borrow_history_info(database_history, database_user, database_gadget)
             #ubah ke string dlu biar bisa dipakein fungsi
             date_history.append(str(database_history[i][3]))
             list_show.append(data_show)
-    #sort tanggalny
+    #sort tanggalnya
     date_history.sort(key = lambda date: datetime.strptime(date, '%d/%m/%Y')) 
     #loop buat bikin list yang udah sorted berdasarkan tanggal
     tentu = len(date_history) - 1
@@ -85,7 +85,7 @@ def gadget_borrow_history_info(database_history, database_user, database_gadget)
             if date_history[tentu] == list_show[i][3]:
                 date_sorted_done.append(list_show[i])
         tentu -= 1
-    show_history(date_sorted_done, database_user, database_gadget, "gadget", "peminjaman", "peminjam")
+    show_history(date_sorted_done, database_user, database_gadget, "peminjaman", "gadget", "peminjaman", "peminjam")
 
 
 
@@ -102,7 +102,7 @@ def gadget_return_history_info(database_return, database_user, database_gadget, 
         #ini ngeconvert dari nomor peminjaman ke id gaget sama id user aja
         id_peminjam = convert_nokembali_iduser(database_return[i][1], database_gadget_borrow)
         id_gadget = convert_nokembali_idgadget(database_return[i][1], database_gadget_borrow)
-        data_show = [database_return[i][0], id_peminjam, id_gadget, database_return[i][2], database_return[i][3]]
+        data_show = [database_return[i][1], id_peminjam, id_gadget, database_return[i][2], database_return[i][3]]
         #ubah ke string dlu biar bisa dipakein fungsi
         date_history.append(str(database_return[i][2]))
         list_show.append(data_show)
@@ -115,7 +115,7 @@ def gadget_return_history_info(database_return, database_user, database_gadget, 
             if date_history[tentu] == list_show[i][3]:
                 date_sorted_done.append(list_show[i])
         tentu -= 1
-    show_history(date_sorted_done, database_user, database_gadget, "gadget", "pengembalian", "pengembali")
+    show_history(date_sorted_done, database_user, database_gadget, "peminjaman", "gadget", "pengembalian", "pengembali")
 
 
 #F13
@@ -138,4 +138,6 @@ def consum_request_history_info(database_consum_history, database_user, database
             if date_history[tentu] == list_show[i][3]:
                 date_sorted_done.append(list_show[i])
         tentu -= 1
-    show_history(date_sorted_done, database_user, database_consumable, "consumable", "pengambilan", "peminta")
+    show_history(date_sorted_done, database_user, database_consumable, "permintaan", "consumable", "pengambilan", "peminta")
+
+
