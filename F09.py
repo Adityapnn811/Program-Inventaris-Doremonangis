@@ -1,13 +1,13 @@
-# MENGEMBALIKAN GADGET
-# ini uda termasuk bonus yang mengembalikan gadget secara parsial
-
+# NGEMBALIIN GADGET
+# uda termasuk bonus
 
 def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history,
                 database_gadget_return):
+    isreturn = False
     for i in range(len(data_pinjam)):
         if i == (no_pinjam - 1):
-            jumlah = int(input("Berapa banyak yang akan dikembalikan? stok sekarang {} : ".format(data_pinjam[i][3])))
-            stok_now = data_pinjam[i][3] - jumlah
+            jumlah = int(input("Berapa banyak yang akan dikembalikan? stok sekarang {} : ".format(data_pinjam[i][2])))
+            stok_now = data_pinjam[i][2] - jumlah
             if jumlah < 0:
                 print("Mana mungkin kukembalikan barang negatif sobat??")
                 return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history,
@@ -17,13 +17,17 @@ def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadge
                 return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history,
                             database_gadget_return)
             else:
-                append_return = [data_pinjam[i][0], data_pinjam[i][1], data_pinjam[i][2], tanggal_balik, jumlah]
-                # id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah
+                # validasi boolean
+                if data_pinjam[i][2] - jumlah == 0:
+                    isreturn = True
+                # ini isreturned gatau buat naon, intinya kalo belom full balikin = False, kalo udah full = True
+                append_return = [data_pinjam[i][0], data_pinjam[i][1], tanggal_balik, jumlah, isreturn]
+                # id;id_peminjaman;tanggal_peminjaman;jumlah
                 database_gadget_return.append(append_return)
                 for i in range(len(database_gadget)):
                     if gadget_id[no_pinjam - 1][0] == database_gadget[i][0]:
                         database_gadget[i][3] += jumlah
-                        print("\nItem {} (x{}) berhasil dikembalikan".format(database_gadget[i][1], jumlah))
+                        print("Item {} (x{}) berhasil dikembalikan".format(database_gadget[i][1], jumlah))
                         item_hapus = gadget_id[no_pinjam - 1][0]
                         break
                 for i in range(len(database_gadget_history)):
@@ -44,7 +48,6 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
     data_pinjam = []
     gadget_id = []
     # LOOP BUAT NUNJUKKIN GADGET YANG UDAH DIPINJEM
-    print()
     for i in range(len(database_gadget_history)):
         if database_gadget_history[i][1] == userid:
             id_gadget = database_gadget_history[i][2]
@@ -54,21 +57,23 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
                         # numnya cuman diincrement kalo jumlah itemnya ga 0
                         num += 1
                         print("{} {}".format(num, database_gadget[j][1]))
+                        # ---------------------------------------REVISI-----------------------------
+                        # id;id_peminjaman;tanggal_pengembalian;is_returned
                         # simpen history peminjamannya, uda termasuk id sama jumlahnya
                         data_pinjam.append(
-                            [len(database_gadget_return), userid, database_gadget[j][0], database_gadget_history[i][4]])
-                        # isi data_pinjam = [id, user_id, gadget_id, jumlah yang dipinjem]
+                            [len(database_gadget_return), database_gadget_history[i][0], database_gadget_history[i][4]])
+                        # isi data_pinjam = [id, nomor peminjaman, jumlah yang dipinjem]
                         gadget_id.append([database_gadget[j][0], database_gadget_history[i][4]])
                         # isi gadget_id = [gadget_id, jumlah yang dipinjam]
     if num == 0:
         print("Kamu belum meminjam barang apapun!")
     else:
-        no_pinjam = int(input("\nMasukkan nomor peminjaman: "))
+        no_pinjam = int(input("Masukkan nomor peminjaman: "))
         tanggal_balik = input("Masukkan tanggal pengembalian: ")
         # Validasi kalo nomor peminjamannya ga valid
         while (no_pinjam) > len(data_pinjam):
             print("Masukkan nomor peminjaman yang benar!")
-            no_pinjam = int(input("\nMasukkan nomor peminjaman: "))
+            no_pinjam = int(input("Masukkan nomor peminjaman: "))
             tanggal_balik = input("Masukkan tanggal pengembalian: ")
         return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history,
                     database_gadget_return)

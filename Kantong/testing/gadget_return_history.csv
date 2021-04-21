@@ -1,0 +1,8 @@
+id;id_peminjaman;tanggal_pengembalian;jumlah;is_returned
+0;1;19/04/2021;3;False
+1;1;19/05/2021;2;False
+2;0;18/09/2020;10;False
+3;0;18/09/2020;4;False
+4;1;18/09/2020;4;False
+5;0;18/09/2020;1;True
+6;1;18/09/2020;5;False

@@ -19,7 +19,7 @@ if id_user == "ADM":
     while True:
         print("\nApa yang ingin kamu lakukan di kantong ajaib?\n1. register"
               "\n2. carirarity\n3. caritahun\n4. tambahitem\n5. hapusitem\n6. ubahjumlah\n7. riwayatpinjam"
-              "\n8. riwayatkembali\n9.riwayatambil\n10. save\n11. help\n12. exit")
+              "\n8. riwayatkembali\n9. riwayatambil\n10. save\n11. help\n12. exit")
         perintah_pertama = input("Ketikkan perintah: ")
         if perintah_pertama == "help":
             help_admin()
