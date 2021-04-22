@@ -56,7 +56,7 @@ def show_history(date_sorted_olah, database_user, database_gadget, deskripsi, ty
             elif hitung % 5 != 0:
                 show_log_gadget(i, date_sorted_olah, database_user, database_gadget, deskripsi, type, kode, kode2)
                 hitung += 1
-            else:
+            elif hitung % 5 == 0:
                 print("\n>>>Next?(y/n)")
                 choice = str(input()).lower()
                 if choice == "y":
@@ -81,13 +81,19 @@ def gadget_borrow_history_info(database_history, database_user, database_gadget)
             list_show.append(data_show)
     # sort tanggalnya
     date_history.sort(key=lambda date: datetime.strptime(date, '%d/%m/%Y'))
-    # loop buat bikin list yang udah sorted berdasarkan tanggal
-    tentu = len(date_history) - 1
-    while tentu > -1:
-        for i in range(len(list_show)):
-            if date_history[tentu] == list_show[i][3]:
-                date_sorted_done.append(list_show[i])
-        tentu -= 1
+    # loop buat bikin list_show yang terurut tanggal
+    for i in range(len(list_show)):
+        for j in range(i, len(list_show)):
+            if date_history[i] == list_show[j][3]:
+                data_temp = list_show[i]
+                list_show[i] = list_show[j]
+                list_show[j] = data_temp
+    # print(list_show)
+    # print(date_history)
+    # Reverse hasil list show
+    for i in range(len(list_show) - 1, -1, -1):
+        date_sorted_done.append(list_show[i])
+    # print(date_sorted_done)
     show_history(date_sorted_done, database_user, database_gadget, "peminjaman", "gadget", "peminjaman", "peminjam")
 
 
@@ -110,13 +116,16 @@ def gadget_return_history_info(database_return, database_user, database_gadget, 
         list_show.append(data_show)
     # sort tanggalnya
     date_history.sort(key=lambda date: datetime.strptime(date, '%d/%m/%Y'))
-    # loop buat bikin list yang udah sorted berdasarkan tanggal
-    tentu = len(date_history) - 1
-    while tentu > -1:
-        for i in range(len(list_show)):
-            if date_history[tentu] == list_show[i][3]:
-                date_sorted_done.append(list_show[i])
-        tentu -= 1
+    # loop buat bikin list_show yang terurut tanggal
+    for i in range(len(list_show)):
+        for j in range(i, len(list_show)):
+            if date_history[i] == list_show[j][3]:
+                data_temp = list_show[i]
+                list_show[i] = list_show[j]
+                list_show[j] = data_temp
+    # Reverse hasil list show
+    for i in range(len(list_show) - 1, -1, -1):
+        date_sorted_done.append(list_show[i])
     show_history(date_sorted_done, database_user, database_gadget, "peminjaman", "gadget", "pengembalian", "pengembali")
 
 
@@ -136,10 +145,15 @@ def consum_request_history_info(database_consum_history, database_user, database
     date_history.sort(key=lambda date: datetime.strptime(date, '%d/%m/%Y'))
     # loop buat bikin list yang udah sorted berdasarkan tanggal
     tentu = len(date_history) - 1
-    while tentu > -1:
-        for i in range(len(list_show)):
-            if date_history[tentu] == list_show[i][3]:
-                date_sorted_done.append(list_show[i])
-        tentu -= 1
+    # loop buat bikin list_show yang terurut tanggal
+    for i in range(len(list_show)):
+        for j in range(i, len(list_show)):
+            if date_history[i] == list_show[j][3]:
+                data_temp = list_show[i]
+                list_show[i] = list_show[j]
+                list_show[j] = data_temp
+    # Reverse hasil list show
+    for i in range(len(list_show) - 1, -1, -1):
+        date_sorted_done.append(list_show[i])
     show_history(date_sorted_done, database_user, database_consumable, "permintaan", "consumable", "pengambilan",
                  "peminta")
