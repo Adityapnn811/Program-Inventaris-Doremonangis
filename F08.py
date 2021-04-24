@@ -15,7 +15,7 @@ def validate_borrow(check, id, userid, jumlah, tanggal, database_gadget, databas
                 else:
                     check += 1
                     database_gadget[i][3] = stok
-                    borrowed = [(len(database_history) + 1),userid, database_gadget[i][0], tanggal, jumlah]
+                    borrowed = [(len(database_history) + 1), userid, database_gadget[i][0], tanggal, jumlah, False]
                     database_history.append(borrowed)
                     print("\nItem {} x{} berhasil dipinjam! Stok tersisa sekarang {}".format(database_gadget[i][1], jumlah, stok))
     if check == 0 and not IsBorrowed(database_history, id, userid):

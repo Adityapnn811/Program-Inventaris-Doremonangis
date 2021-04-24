@@ -65,7 +65,7 @@ def show_history(date_sorted_olah, database_user, database_gadget, deskripsi, ty
                 else:
                     break
     else:
-        print("Belum ada riwayat {}!".format(kode))
+        print("\n>>> Belum ada riwayat {}!".format(kode))
 
 
 def gadget_borrow_history_info(database_history, database_user, database_gadget):

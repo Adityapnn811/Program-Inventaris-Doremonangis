@@ -89,7 +89,7 @@ def load():
         lines_gadget_borrow_history = [raw_line.replace("\n", "") for raw_line in raw_lines_gadget_borrow_history]
         raw_header_gadget_borrow_history = lines_gadget_borrow_history.pop(0)
         header_gadget_borrow_history = konversi_baris_ke_data(raw_header_gadget_borrow_history)  # Ntar join di fungsi save
-        buat_data_sesuai_tipe_data(datas_gadget_borrow_history, lines_gadget_borrow_history, 5, 4)
+        buat_data_sesuai_tipe_data(datas_gadget_borrow_history, lines_gadget_borrow_history, 6, 4)
 
         # Untuk gadget_return_history
         f = open("Kantong/" + args.nama_folder + "\\gadget_return_history.csv", "r")
