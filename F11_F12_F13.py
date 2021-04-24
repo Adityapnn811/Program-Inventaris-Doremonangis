@@ -88,12 +88,9 @@ def gadget_borrow_history_info(database_history, database_user, database_gadget)
                 data_temp = list_show[i]
                 list_show[i] = list_show[j]
                 list_show[j] = data_temp
-    # print(list_show)
-    # print(date_history)
     # Reverse hasil list show
     for i in range(len(list_show) - 1, -1, -1):
         date_sorted_done.append(list_show[i])
-    # print(date_sorted_done)
     show_history(date_sorted_done, database_user, database_gadget, "peminjaman", "gadget", "peminjaman", "peminjam")
 
 
