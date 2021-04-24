@@ -1,1 +1,1 @@
-id;id_peminjaman;id_gadget;tanggal_peminjaman;jumlah
+id;id_peminjaman;id_gadget;tanggal_peminjaman;jumlah;is_returned
