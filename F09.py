@@ -15,7 +15,7 @@ def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadge
                     if data_pinjam[i][2] - jumlah == 0:
                         isreturn = True
                     #ini isreturned gatau buat naon, intinya kalo belom full balikin = False, kalo udah full = True
-                    append_return = [data_pinjam[i][0], data_pinjam[i][1], tanggal_balik, jumlah, isreturn]
+                    append_return = [data_pinjam[i][0], data_pinjam[i][1], tanggal_balik, jumlah]
                     #id;id_peminjaman;tanggal_peminjaman;jumlah
                     database_gadget_return.append(append_return)
                     for i in range(len(database_gadget)):
@@ -25,11 +25,13 @@ def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadge
                             item_hapus = gadget_id[no_pinjam-1][0]
                             break
                     for i in range(len(database_gadget_history)):
-                        if database_gadget_history[i][2] == item_hapus:
+                        #--------------ini revisinya, sekalian validasi biar nanti di history ga -
+                        if database_gadget_history[i][2] == item_hapus and database_gadget_history[i][4] != 0:
                             database_gadget_history[i][4] -= jumlah
+                            database_gadget_history[i][5] = isreturn
                             print("\n>>> Riwayat peminjamanmu telah diperbaharui")
                             break
-                
+                            
                             
 
 
