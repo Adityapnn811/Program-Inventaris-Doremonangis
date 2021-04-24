@@ -68,6 +68,7 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
     if num == 0:
         print("Kamu belum meminjam barang apapun!")
     else:
+        print("")
         no_pinjam = int(input("Masukkan nomor peminjaman: "))
         tanggal_balik = input("Masukkan tanggal pengembalian: ")
         # Validasi kalo nomor peminjamannya ga valid
