@@ -1,3 +1,5 @@
+# F3 DAN F4 Cari rarity dan cari tahun
+
 #ini buat nampilin output kek biasa
 def gadget_service(name, desc, amount, rarity, year):
     print("\nNama: {}".format(name))
@@ -18,7 +20,7 @@ def gadget_by_rarity(database_gadget):
             count += 1
             gadget_service(database_gadget[i][1], database_gadget[i][2], database_gadget[i][3], database_gadget[i][4], database_gadget[i][5])
     if count == 0:
-        print("Gadget tidak ditemukan")
+        print("\nGadget tidak ditemukan")
 
 
 #F04
@@ -30,17 +32,17 @@ def gadget_by_year(database_gadget):
         if category == "=" and int(database_gadget[i][5]) == year:
             count +=1
             gadget_service(database_gadget[i][1], database_gadget[i][2], database_gadget[i][3], database_gadget[i][4], database_gadget[i][5])
-        elif category == ">" and (int(database_gadget[i][5])) == (year+1):
+        elif category == ">" and (int(database_gadget[i][5])) > (year):
             count += 1
             gadget_service(database_gadget[i][1], database_gadget[i][2], database_gadget[i][3], database_gadget[i][4], database_gadget[i][5])
-        elif category == "<" and int(database_gadget[i][5]) == (year-1):
+        elif category == "<" and int(database_gadget[i][5]) < (year):
             count += 1
             gadget_service(database_gadget[i][1], database_gadget[i][2], database_gadget[i][3], database_gadget[i][4], database_gadget[i][5])
-        elif category == ">=" and (int(database_gadget[i][5]) == year) or (int(database_gadget[i][5]) == year+1):
+        elif category == ">=" and (int(database_gadget[i][5]) >= year):
             count += 1
             gadget_service(database_gadget[i][1], database_gadget[i][2], database_gadget[i][3], database_gadget[i][4], database_gadget[i][5])
-        elif category == "=" and (int(database_gadget[i][5]) == year) or (int(database_gadget[i][5]) == year-1):
+        elif category == "<=" and (int(database_gadget[i][5]) <= year):
             count += 1
             gadget_service(database_gadget[i][1], database_gadget[i][2], database_gadget[i][3], database_gadget[i][4], database_gadget[i][5])
     if count == 0:
-        print("Gadget tidak ditemukan")
+        print("\nGadget tidak ditemukan")

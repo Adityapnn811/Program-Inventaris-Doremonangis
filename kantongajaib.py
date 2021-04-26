@@ -10,6 +10,7 @@ from F11_F12_F13 import *
 from F05 import *
 from F06 import *
 from F07 import *
+from F3_F4 import *
 
 load()
 
@@ -29,6 +30,10 @@ if id_user == "ADM":
             help_admin()
         elif perintah_pertama == "register":
             input_username(datas_user)
+        elif perintah_pertama == "carirarity":
+            gadget_by_rarity(datas_gadget)
+        elif perintah_pertama == "caritahun":
+            gadget_by_year(datas_gadget)
         elif perintah_pertama == "tambahitem":
             tambah_item(datas_gadget, datas_consumable)
         elif perintah_pertama == "hapusitem":
@@ -54,6 +59,10 @@ else:
         perintah_pertama = input("Ketikkan perintah: ")
         if perintah_pertama == "help":
             help_user()
+        elif perintah_pertama == "carirarity":
+            gadget_by_rarity(datas_gadget)
+        elif perintah_pertama == "caritahun":
+            gadget_by_year(datas_gadget)
         elif perintah_pertama == "pinjam":
             borrow_gadget(id_user, datas_gadget, datas_gadget_borrow_history)
         elif perintah_pertama == "kembalikan":
