@@ -80,4 +80,7 @@ def borrow_gadget(userid, database_gadget, database_history):
             id = input("Masukkan id item: ")
         tanggal = input("Tanggal peminjaman(DD/MM/YYYY): ")
         jumlah = int(input("Jumlah peminjaman: "))
+        while jumlah < 0:
+            print("Kamu tidak dapat meminjam sejumlah negatif barang sobat!")
+            jumlah = int(input("Jumlah peminjaman: "))
         validate_borrow(count, id, userid, jumlah, tanggal, database_gadget, database_history)
