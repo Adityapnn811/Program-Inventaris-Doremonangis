@@ -1,3 +1,7 @@
+# F10 meminta consumable
+from validate_tanggal import *
+from fungsi_parser import *
+
 index = 0
 
 def validate_id(database_consumable, id_consumable):
@@ -66,6 +70,11 @@ def minta_consumable(database_consumable, id_user, database_consumable_history):
             validate_jumlah(database_consumable, jumlah_minta, id_consumable)
         database_consumable[index][3] -= jumlah_minta
         tanggal = input("Tanggal permintaan: ")
+        arr_tanggal = parser_tanggal(tanggal)
+        while not validate_date(arr_tanggal):
+            print("Input tanggal tidak valid! Ulangi!")
+            tanggal = input("Tanggal peminjaman(DD/MM/YYYY): ")
+            arr_tanggal = parser_tanggal(tanggal)
         print("\nItem "+str(database_consumable[index][1])+"(x"+str(jumlah_minta)+") telah berhasil diambil!")
         # Masukin data ke consumable history
         data_history = [(len(database_consumable_history) + 1), id_user, id_consumable, tanggal, jumlah_minta]

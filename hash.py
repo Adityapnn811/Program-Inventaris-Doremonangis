@@ -25,10 +25,9 @@ def random_salt(database_user):
     for i in random:
         ranlist.append(i)
     for i in range(len(ranlist)):
-        if ranlist[i].isdigit():
+        if ranlist[i].isdigit() or ranlist[i] == ";":
                 ranlist[i] = listrandom
     return ranlist
-
 
 #ini fungsi utamanya buat ngehash password
 def hash_try(password, salt):

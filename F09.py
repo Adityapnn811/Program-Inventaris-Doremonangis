@@ -1,3 +1,7 @@
+# F09 Kembalikan item
+from validate_tanggal import *
+from fungsi_parser import *
+
 def return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history,
                 database_gadget_return):
     isreturn = False
@@ -71,10 +75,20 @@ def return_borrowed(userid, database_gadget, database_gadget_history, database_g
         print("")
         no_pinjam = int(input("Masukkan nomor peminjaman: "))
         tanggal_balik = input("Masukkan tanggal pengembalian: ")
+        arr_tanggal = parser_tanggal(tanggal_balik)
+        while not validate_date(arr_tanggal):
+            print("Input tanggal tidak valid! Ulangi!")
+            tanggal_balik = input("Tanggal peminjaman(DD/MM/YYYY): ")
+            arr_tanggal = parser_tanggal(tanggal_balik)
         # Validasi kalo nomor peminjamannya ga valid
         while (no_pinjam) > len(data_pinjam):
             print("Masukkan nomor peminjaman yang benar!")
             no_pinjam = int(input("Masukkan nomor peminjaman: "))
             tanggal_balik = input("Masukkan tanggal pengembalian: ")
+            arr_tanggal = parser_tanggal(tanggal_balik)
+            while not validate_date(arr_tanggal):
+                print("Input tanggal tidak valid! Ulangi!")
+                tanggal_balik = input("Tanggal peminjaman(DD/MM/YYYY): ")
+                arr_tanggal = parser_tanggal(tanggal_balik)
         return_loop(no_pinjam, tanggal_balik, data_pinjam, gadget_id, database_gadget, database_gadget_history,
                     database_gadget_return)

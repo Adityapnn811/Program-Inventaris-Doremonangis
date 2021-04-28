@@ -6,8 +6,6 @@ from hash import *
 
 idx_baris = 0
 
-idx_baris = 0
-
 def validate_login(username, password, database):
     global idx_baris
     valid = False

@@ -1,4 +1,6 @@
 # F08 pinjam gadget
+from validate_tanggal import *
+from fungsi_parser import *
 
 def validate_borrow(check, id, userid, jumlah, tanggal, database_gadget, database_history):
     #VALIDASI PINJEMNYA MELEBIHI STOK/NGGA sekaligus konfirmasi pinjemannya
@@ -79,6 +81,11 @@ def borrow_gadget(userid, database_gadget, database_history):
             print(">>> Kamu sudah meminjam gadget ini! Harap kembalikan terlebih dahulu sebelum meminjam kembali!")
             id = input("Masukkan id item: ")
         tanggal = input("Tanggal peminjaman(DD/MM/YYYY): ")
+        arr_tanggal = parser_tanggal(tanggal)
+        while not validate_date(arr_tanggal):
+            print("Input tanggal tidak valid! Ulangi!")
+            tanggal = input("Tanggal peminjaman(DD/MM/YYYY): ")
+            arr_tanggal = parser_tanggal(tanggal)
         jumlah = int(input("Jumlah peminjaman: "))
         while jumlah < 0:
             print("Kamu tidak dapat meminjam sejumlah negatif barang sobat!")
