@@ -54,6 +54,10 @@ def minta_consumable(database_consumable, id_user, database_consumable_history):
         while validate_id(database_consumable, id_consumable) == False:  # Cukup validasi di sini, soalnya ini udah bakal ngeloop sampe valid
             id_consumable = input("Masukkan id item: ")
         jumlah_minta = int(input("Jumlah: "))
+        #validasi kalo mintanya negatif
+        while jumlah_minta < 0:
+            print("Kamu tidak dapat meminta sejumlah negatif barang sobat!")
+            jumlah_minta = int(input("Jumlah: "))
         # validasi jumlah
         while validate_jumlah(database_consumable, jumlah_minta, id_consumable) == False:
             print("Stok tidak cukup, stok yang tersedia sekarang sebanyak {}.".format(database_consumable[index][3]))
