@@ -12,13 +12,14 @@ from F06 import *
 from F07 import *
 from F3_F4 import *
 
+# Memanggil fungsi load untuk inisiasi array data
 load()
 
 print("\nLoading...")
 print('\n==========Selamat datang di "Kantong Ajaib"!==========')
 print("\nSebelum masuk ke kantong ajaib, login dulu ya!")
 
-id_user = login(datas_user) # Manggil fungsi login sekalian assign id user
+id_user = login(datas_user) # memanggil fungsi login sekaligus assign id user
 
 if id_user == "ADM":
     while True:

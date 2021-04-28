@@ -11,11 +11,12 @@ def validate_save(konfirmasi_save):
     return save
 
 def exit():
-    konfirmasi_save = input("\nApakah Anda ingin menyimpan data sebelum keluar? (y/n)? : ")
+    konfirmasi_save = input("\nApakah Anda ingin menyimpan data sebelum keluar? (Y/N)? : ")
+    # Validasi apakah input yang dimasukkan valid
     validate_save(konfirmasi_save)
     while not validate_save(konfirmasi_save):
         print("Mohon masukkan input yang valid.")
-        konfirmasi_save = input("\nApakah Anda ingin menyimpan data sebelum keluar? (y/n)? : ")
+        konfirmasi_save = input("\nApakah Anda ingin menyimpan data sebelum keluar? (Y/N)? : ")
         validate_save(konfirmasi_save)
     if konfirmasi_save == "y" or konfirmasi_save == 'Y':
         save()

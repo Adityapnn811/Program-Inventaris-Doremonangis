@@ -21,7 +21,7 @@ def validate_jumlah_gadget(datas_gadget, jumlah, id_input):
             if stok < 0:
                 print("\n>>> {} {} gagal dibuang karena stok kurang. Stok sekarang: {} (< {})".format((-1 * jumlah),
                                                                                                 datas_gadget[i][1],
-                                                                                                datas_gadget[i][0],
+                                                                                                datas_gadget[i][3],
                                                                                                 (-1 * jumlah)))
             else: # Kalo stok nya >= 0
                 datas_gadget[i][3] += jumlah

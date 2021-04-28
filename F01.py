@@ -1,4 +1,5 @@
 #F01 - REGISTER
+from hash import hash_try
 
 #FUNGSI VALIDASI USERNAME
 def validate_username(user_name, database):
@@ -19,7 +20,8 @@ def input_username(database):
     while validate_username(username, database) == False:
         username = input("Username: ")
     password = input("Password: ")
+    hashed_pass = hash_try(password, database)
     alamat = input("Alamat: ")
-    datas_user = [id,username,nama,alamat,password,"user"]
+    datas_user = [id,username,nama,alamat,hashed_pass,"user"]
     database.append(datas_user)
     print("\nUser {} telah berhasil register ke dalam kantong ajaib!".format(username))

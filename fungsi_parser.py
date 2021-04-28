@@ -25,4 +25,8 @@ def parser_tanggal(tanggal_str):
     # Ubah array tanggal ke integer
     for j in range(len(tanggal_copy)):
         tanggal_copy[j] = int(tanggal_copy[j])
+<<<<<<< HEAD
     return tanggal_copy
+=======
+    return tanggal_copy
+>>>>>>> 4c5565ec20ae00a28d6429e11e9b28e7f2e0e5ff

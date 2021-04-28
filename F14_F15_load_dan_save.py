@@ -12,7 +12,7 @@ datas_consumable_history = []
 datas_gadget_borrow_history = []
 datas_gadget_return_history = []
 
-
+# MEngubah baris csv menjadi array dengan memisahkan baris saat bertemu semicolon
 def konversi_baris_ke_data(line):
     data_array_mentah = parser(line)
     data_array = [data.strip() for data in data_array_mentah]
@@ -47,13 +47,13 @@ def load():
     args = load_parser.parse_args()
     if path.isdir("Kantong/" + args.nama_folder):  # mengecek apakah ada folder sesuai dengan nama folder yang dimasukkan pada argumen
         # Untuk user
-        f = open("Kantong/" + args.nama_folder + "\\user.csv", "r")
-        raw_lines_user = f.readlines()
+        f = open("Kantong/" + args.nama_folder + "\\user.csv", "r") # Mengakses folder
+        raw_lines_user = f.readlines() # Membaca semua baris yang ada di csv
         f.close()
-        lines_user = [raw_line.replace("\n", "") for raw_line in raw_lines_user]
+        lines_user = [raw_line.replace("\n", "") for raw_line in raw_lines_user] # Menghapus newline pada data dan mengubah ke bentuk array of tuple
         raw_header_user = lines_user.pop(0)  # Buat ngehapus header di csv, jadi engga nyusahin pas ngolah data di fugnsi laen
         header_user = konversi_baris_ke_data(raw_header_user)  #Ntar join di fungsi save
-        buat_data(datas_user, lines_user)
+        buat_data(datas_user, lines_user) # Membuat array dari baris
 
         # Untuk gadget
         f = open("Kantong/" + args.nama_folder + "\\gadget.csv", "r")
@@ -110,6 +110,7 @@ def save():
     global header_consumable_history, datas_consumable_history, header_gadget_borrow_history, datas_gadget_borrow_history
     global header_gadget_return_history, datas_gadget_return_history
 
+    # Mengubah array yang berisi data ke dalam bentuk string baris per baris
     def konversi_data_ke_string(datas, header):
         string_data = ";".join(header) + "\n"
         for arr_data in datas:
@@ -119,7 +120,7 @@ def save():
         datas = string_data
         return datas
 
-    # Input nama folder
+    # Input nama folder dan mengecek apakah nama folder sudah ada
     nama_folder = input("\nMasukkan nama folder penyimpanan: ")
     if not os.path.exists("Kantong/" + nama_folder):
         os.mkdir("Kantong/" + nama_folder)
