@@ -1,6 +1,11 @@
 from fungsi_parser import parser_tanggal
 
 def validate_date(arr):
+    #konfirmasi date harus DD/MM/YYYY
+    for i in range(len(arr)):
+        if len(str(arr[i])) !=2 or len(str(arr[i])) != 4:
+            print("Tanggal harus dalam format DD/MM/YYYY")
+            return False
     kabisat = False
     if ((arr[2] % 4 == 0) and (arr[2] % 100 != 0)) or (arr[2] % 4 == 0):
         kabisat = True
