@@ -2,10 +2,15 @@ from fungsi_parser import parser_tanggal
 
 def validate_date(arr):
     #konfirmasi date harus DD/MM/YYYY
-    for i in range(len(arr)):
-        if len(str(arr[i])) !=2 or len(str(arr[i])) != 4:
-            print("Tanggal harus dalam format DD/MM/YYYY")
-            return False
+    if len(str(arr[0])) !=2 or len(str(arr[1])) !=2:
+        print(">>> Tanggal harus dalam format DD/MM/YYYY!")
+        return False
+    elif(len(str(arr[2]))) != 4:
+        print(">>> Tanggal harus dalam format DD/MM/YYYY")
+        return False
+    #ubah tanggal ke integer
+    for j in range(len(arr)):
+        arr[j] = int(arr[j])
     kabisat = False
     if ((arr[2] % 4 == 0) and (arr[2] % 100 != 0)) or (arr[2] % 4 == 0):
         kabisat = True
