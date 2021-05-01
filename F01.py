@@ -15,7 +15,8 @@ def validate_username(user_name, database):
 def input_username(database):
     print("\nSilahkan masukkan data user yang akan diregister")
     id = ("U{}".format(len(database)))
-    nama = input("Nama: ")
+    #fungsi title agar kapitalisasi nama benar
+    nama = input("Nama: ").title()
     username = input("Username: ")
     while validate_username(username, database) == False:
         username = input("Username: ")

@@ -22,7 +22,4 @@ def parser_tanggal(tanggal_str):
         else:
             string_group += i
     tanggal_copy.append(string_group)
-    # Ubah array tanggal ke integer
-    for j in range(len(tanggal_copy)):
-        tanggal_copy[j] = int(tanggal_copy[j])
     return tanggal_copy
