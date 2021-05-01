@@ -23,3 +23,4 @@ def parser_tanggal(tanggal_str):
             string_group += i
     tanggal_copy.append(string_group)
     return tanggal_copy
+
